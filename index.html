@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docente Pro Uruguay - Descargas</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #e9ecef; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; }
+        .card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; max-width: 400px; width: 90%; }
+        h1 { color: #007bff; font-size: 24px; }
+        p { color: #6c757d; line-height: 1.5; }
+        .spinner { border: 4px solid rgba(0,0,0,0.1); width: 36px; height: 36px; border-radius: 50%; border-left-color: #007bff; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .btn { display: none; background-color: #28a745; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 20px; transition: background 0.3s; }
+        .btn:hover { background-color: #218838; }
+        .ads { margin: 20px 0; min-height: 100px; background: #f8f9fa; border: 1px dashed #ced4da; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #adb5bd; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Docente Pro Uruguay</h1>
+        <p id="status">Verificando credenciales de la TCI 2024...</p>
+        
+        <div class="ads">
+            Espacio publicitario disponible
+        </div>
+
+        <div id="loader" class="spinner"></div>
+        <a href="#" id="downloadBtn" class="btn">DESCARGAR PLANIFICACIÓN</a>
+    </div>
+
+    <script>
+        // Leemos los datos que el bot mandó en la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const tema = urlParams.get('tema') ? urlParams.get('tema').replace(/_/g, ' ') : "Documento";
+        const doc = urlParams.get('doc') || "Planificación";
+
+        const statusText = document.getElementById('status');
+        const loader = document.getElementById('loader');
+        const btn = document.getElementById('downloadBtn');
+
+        // Personalizamos el mensaje
+        statusText.innerText = `Tu ${doc} sobre "${tema}" está casi listo. Procesando mojones y criterios...`;
+
+        // Simulamos espera de 10 segundos para que vean la publicidad
+        setTimeout(() => {
+            loader.style.display = 'none';
+            statusText.innerText = "¡Validación exitosa! Ya puedes descargar tu documento oficial.";
+            btn.style.display = 'inline-block';
+            
+            // Aquí pones el link real a tu archivo o carpeta de descargas
+            btn.href = "https://tu-sitio-de-archivos.com/archivo.pdf";
+        }, 10000);
+    </script>
+</body>
+</html>
